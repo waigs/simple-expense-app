@@ -3,7 +3,7 @@ import { GlobalContext } from "../state/GlobalState";
 
 const TransactionForm = () => {
   const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   const { addTransaction } = useContext(GlobalContext);
 
   const onSubmit = e => {
@@ -16,6 +16,8 @@ const TransactionForm = () => {
     };
 
     addTransaction(newTransAction);
+    setDescription("");
+    setAmount("");
   };
 
   const onChangeDescription = e => {
