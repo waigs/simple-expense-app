@@ -1,34 +1,62 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { GlobalContext } from "../state/GlobalState";
 
-const TransactionForm = () => (
-  <form>
-    <p>
-      <strong>Add new transaction</strong>
-    </p>
-    <div class="mb-3">
-      <label for="description">Description</label>
-      <input
-        type="text"
-        class="form-control"
-        id="description"
-        placeholder="Please enter description"
-      />
-    </div>
+const TransactionForm = () => {
+  const [description, setDescription] = useState("");
+  const [amount, setAmount] = useState(0);
+  const { addTransaction } = useContext(GlobalContext);
 
-    <div class="mb-3">
-      <label for="amount">Amount</label>
-      <input
-        type="text"
-        class="form-control"
-        id="amount"
-        placeholder="Please enter amount"
-      />
-    </div>
+  const onSubmit = e => {
+    e.preventDefault();
 
-    <button type="submit" class="btn btn-primary">
-      Add transaction
-    </button>
-  </form>
-);
+    const newTransAction = {
+      id: Date(),
+      description,
+      amount: +amount
+    };
+
+    addTransaction(newTransAction);
+  };
+
+  const onChangeDescription = e => {
+    setDescription(e.target.value);
+  };
+  const onChangeAmount = e => {
+    setAmount(e.target.value);
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <p>
+        <strong>Add new transaction</strong>
+      </p>
+      <div className="mb-3">
+        <label htmlFor="description">Description</label>
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Please enter description"
+          value={description}
+          onChange={onChangeDescription}
+        />
+      </div>
+
+      <div className="mb-3">
+        <label htmlFor="amount">Amount</label>
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Please enter amount"
+          value={amount}
+          onChange={onChangeAmount}
+        />
+      </div>
+
+      <button type="submit" className="btn btn-primary">
+        Add transaction
+      </button>
+    </form>
+  );
+};
 
 export default TransactionForm;
