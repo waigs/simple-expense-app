@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../state/GlobalState";
+import currency from "../constants/currency";
 
 const TransactionBalance = () => {
   const { transactions } = useContext(GlobalContext);
@@ -13,7 +14,10 @@ const TransactionBalance = () => {
   return (
     <div className="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <p>Your Balance </p>
-      <h1 className="display-4">£{totalAmount}</h1>
+      <h1 className="display-4">
+        {currency.current}
+        {totalAmount}
+      </h1>
     </div>
   );
 };

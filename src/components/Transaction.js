@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../state/GlobalState";
+import currency from "../constants/currency";
 
 const Transaction = ({ transaction }) => {
   const { deleteTransaction } = useContext(GlobalContext);
@@ -16,7 +17,9 @@ const Transaction = ({ transaction }) => {
       <div className="text-success">
         <span className={`text-${colorBalance}`}>
           <h6 className="my-0">{description}</h6>
-          {sign}£{Math.abs(amount)}
+          {sign}
+          {currency.current}
+          {Math.abs(amount)}
         </span>
       </div>
       <button
