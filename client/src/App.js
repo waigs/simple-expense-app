@@ -9,15 +9,15 @@ import { GlobalProvider } from "./state/GlobalState";
 
 const App = () => {
   return (
-    <div className="container">
-      <GlobalProvider>
+    <GlobalProvider>
+      <div className="container">
         <Navbar />
         <TransactionBalance />
         <ExpenseCard />
         <TransactionList />
         <TransactionForm />
-      </GlobalProvider>
-    </div>
+      </div>
+    </GlobalProvider>
   );
 };
 
